@@ -1,3 +1,4 @@
+
 # %%
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
@@ -80,3 +81,12 @@ save_directory = "./exported_model"
 # %%모델과 토크나이저 저장
 model.save_pretrained(save_directory)
 tokenizer.save_pretrained(save_directory)
+
+import joblib
+# ✅ 저장
+joblib.dump(model, 'text_model.pkl')
+joblib.dump(tokenizer, 'tokenizer.pkl')
+
+model = joblib.load('text_model.pkl')
+vectorizer = joblib.load('tokenizer.pkl')
+
